@@ -50,7 +50,7 @@ async def update_admin(client, message):
         new_admins.append(u.user.id)
     admins[message.chat.id] = new_admins
     await message.reply_text(
-        "✅ Bot **reloaded correctly !**\n✅ **Admin list** has been **updated !**"
+        "✅ Bot **Reloaded Correctly !**\n✅ **Admin List** Has Been **Updated !** Support Group - @ByteBotsSupport "
     )
 
 
@@ -60,18 +60,18 @@ async def update_admin(client, message):
 @authorized_users_only
 async def controlset(_, message: Message):
     await message.reply_text(
-        "💡 **here is the control menu of bot :**",
+        "💡 **Here Is The Control Menu Of Bot :**",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⏸ pause", callback_data="cbpause"),
-                    InlineKeyboardButton("▶️ resume", callback_data="cbresume"),
+                    InlineKeyboardButton("⏸ Pause", callback_data="cbpause"),
+                    InlineKeyboardButton("▶️ Resume", callback_data="cbresume"),
                 ],
                 [
-                    InlineKeyboardButton("⏩ skip", callback_data="cbskip"),
-                    InlineKeyboardButton("⏹ stop", callback_data="cbend"),
+                    InlineKeyboardButton("⏩ Skip", callback_data="cbskip"),
+                    InlineKeyboardButton("⏹ Stop", callback_data="cbend"),
                 ],
-                [InlineKeyboardButton("⛔ anti cmd", callback_data="cbdelcmds")],
+                [InlineKeyboardButton("⛔ Anti Cmd", callback_data="cbdelcmds")],
                 [InlineKeyboardButton("🗑 Close", callback_data="close")],
             ]
         ),
@@ -86,11 +86,11 @@ async def pause(_, message: Message):
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS(int(x.chat_id))
     if int(chat_id) not in ACTV_CALLS:
-        await message.reply_text("❌ **no music is currently playing**")
+        await message.reply_text("❌ **No Music Is Currently Playing** Support - @ByteBotsSupport")
     else:
         await callsmusic.pytgcalls.pause_stream(chat_id)
         await message.reply_text(
-            "⏸ **Track paused.**\n\n• **To resume the playback, use the**\n» /resume command."
+            "⏸ **Track paused.**\n\n• **To Resume The Playback, Use The**\n» /resume Command."
         )
 
 
@@ -102,11 +102,11 @@ async def resume(_, message: Message):
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
     if int(chat_id) not in ACTV_CALLS:
-        await message.reply_text("❌ **no music is paused**")
+        await message.reply_text("❌ **No Music Is Paused** Chatting Group - @Friendship_Junction")
     else:
         await callsmusic.pytgcalls.resume_stream(chat_id)
         await message.reply_text(
-            "▶️ **Track resumed.**\n\n• **To pause the playback, use the**\n» /pause command."
+            "▶️ **Track resumed.**\n\n• **To Pause The Playback, Use The**\n» /pause Command. Thanks- @Arpit_Chaurasiya"
         )
 
 
@@ -118,14 +118,14 @@ async def stop(_, message: Message):
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
     if int(chat_id) not in ACTV_CALLS:
-        await message.reply_text("❌ **no music is currently playing**")
+        await message.reply_text("❌ **No Music Is Currently Playing**")
     else:
         try:
             queues.clear(chat_id)
         except QueueEmpty:
             pass
         await callsmusic.pytgcalls.leave_group_call(chat_id)
-        await message.reply_text("✅ **music playback has ended**")
+        await message.reply_text("✅ **Music Playback Has Ended**")
 
 
 @Client.on_message(command(["skip", f"skip@{BOT_USERNAME}", "next", f"next@{BOT_USERNAME}"]) & other_filters)
@@ -137,7 +137,7 @@ async def skip(_, message: Message):
     for x in callsmusic.pytgcalls.active_calls:
         ACTV_CALLS.append(int(x.chat_id))
     if int(chat_id) not in ACTV_CALLS:
-        await message.reply_text("❌ **no music is currently playing**")
+        await message.reply_text("❌ **No Music Is Currently Playing**")
     else:
         queues.task_done(chat_id)
         
@@ -158,7 +158,7 @@ async def skip(_, message: Message):
         qeue.pop(0)
     if not qeue:
         return
-    await message.reply_text("⏭ **You've skipped to the next song.**")
+    await message.reply_text("⏭ **You've Skipped To The Next Song. Join - @Arpit_Chaurasiya**")
 
 
 @Client.on_message(command(["auth", f"auth@{BOT_USERNAME}"]) & other_filters)
@@ -172,10 +172,10 @@ async def authenticate(client, message):
         new_admins.append(message.reply_to_message.from_user.id)
         admins[message.chat.id] = new_admins
         await message.reply(
-            "🟢 user authorized.\n\nfrom now on, that's user can use the admin commands."
+            "🟢 User Authorized.\n\nFrom Now On, That's User Can Use The Admin Commands."
         )
     else:
-        await message.reply("✅ user already authorized!")
+        await message.reply("✅ User Already Authorized!")
 
 
 @Client.on_message(command(["unauth", f"deauth@{BOT_USERNAME}"]) & other_filters)
@@ -189,7 +189,7 @@ async def deautenticate(client, message):
         new_admins.remove(message.reply_to_message.from_user.id)
         admins[message.chat.id] = new_admins
         await message.reply(
-            "🔴 user deauthorized.\n\nfrom now that's user can't use the admin commands."
+            "🔴 User Deauthorized.\n\nFrom Now On, That's User Can't Use The Admin Commands."
         )
     else:
         await message.reply("✅ user already deauthorized!")
@@ -201,7 +201,7 @@ async def deautenticate(client, message):
 async def delcmdc(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text(
-            "read the /help message to know how to use this command"
+            "Read The /help message to know how to use this command"
         )
     status = message.text.split(None, 1)[1].strip()
     status = status.lower()
