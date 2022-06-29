@@ -23,7 +23,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 @Client.on_message(command(["stream", f"stream@{BOT_USERNAME}"]) & other_filters)
 async def stream(_, message: Message):
     costumer = message.from_user.mention
-    lel = await message.reply_text("🔁 **processing** sound...")
+    lel = await message.reply_text("🔁 **Processing** Sound...")
 
     keyboard = InlineKeyboardMarkup(
         [
@@ -40,10 +40,10 @@ async def stream(_, message: Message):
 
     audio = message.reply_to_message.audio if message.reply_to_message else None
     if not audio:
-        return await lel.edit("💭 **please reply to a telegram audio file**")
+        return await lel.edit("💭 **Please Reply To A Telegram Audio File**")
     if round(audio.duration / 60) > DURATION_LIMIT:
         return await lel.edit(
-            f"❌ **music with duration more than** `{DURATION_LIMIT}` **minutes, can't play !**"
+            f"❌ **Music With Duration More Than** `{DURATION_LIMIT}` **Minutes, Can't Play !**"
         )
 
     title = audio.title
@@ -62,7 +62,7 @@ async def stream(_, message: Message):
         position = await queues.put(chat_id, file=file_path)
         await message.reply_photo(
             photo=f"{QUE_IMG}",
-            caption=f"💡 **Track added to queue »** `{position}`\n\n🏷 **Name:** {title[:50]}\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {costumer}",
+            caption=f"💡 **Track Added To Queue »** `{position}`\n\n🏷 **Name:** {title[:50]}\n⏱ **Duration:** `{duration}`\n🎧 **Request by:** {costumer} \nBot Developed By @Arpiy_Chaurasiya",
             reply_markup=keyboard,
         )
     else:
@@ -77,7 +77,7 @@ async def stream(_, message: Message):
         await message.reply_photo(
             photo=f"{AUD_IMG}",
             caption=f"🏷 **Name:** {title[:50]}\n⏱ **Duration:** `{duration}`\n💡 **Status:** `Playing`\n"
-            + f"🎧 **Request by:** {costumer}",
+            + f"🎧 **Request by:** {costumer} \nBot Developed By @Arpiy_Chaurasiya",
             reply_markup=keyboard,
         )
 
