@@ -57,7 +57,8 @@ async def start_private(client: Client, message: Message):
 
 💡 **Find out all the Bot's commands and how they work by clicking on the » 📚 Commands button!**
 
-🔖 **To know how to use this bot, please click on the » ❓ Basic Guide button!**""",
+🔖 **To know how to use this bot, please click on the » ❓ Basic Guide button!**
+   ** DEVELOPED BY @Arpit_Chaurasiya**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
